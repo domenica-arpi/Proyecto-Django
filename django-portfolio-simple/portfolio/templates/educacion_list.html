@@ -1,0 +1,12 @@
+<h2>Lista de Credenciales Académicas</h2>
+<a href="{% url 'educacion_create' %}">Agregar Nueva Educación</a>
+
+<ul>
+    {% for educacion in educaciones %}
+        <li>
+            {{ educacion.titulo }} - {{ educacion.institucion }} ({{ educacion.anio_inicio }} - {{ educacion.anio_fin }})
+            <a href="{% url 'educacion_update' educacion.pk %}">Editar</a>
+            <a href="{% url 'educacion_delete' educacion.pk %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>

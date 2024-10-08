@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- Hero Section -->
+<header class="row bg-black">
+  <div class="col-md-4">
+    <img src="{% static 'portfolio/logo.jpeg' %}" />
+  </div>
+
+  <div class="col-md-8 my-auto p-4">
+    <h1> Somos <strong> Domenica y Veronica </strong></h1>
+    <h3> Estudiante de Ing en Software </h3>
+    <p>Somos Veronica y Domenica, estudiantes de Ingeniería de Software con gran entusiasmo por el desarrollo web y móvil.  Tenemos experiencia en lenguajes como JavaScript, Python y Java, y nos apasiona crear soluciones innovadoras que mejoren la vida de las personas.  Hemos participado en proyectos de desarrollo de aplicaciones web y móviles, donde hemos aplicado nuestras habilidades en diseño de interfaces, bases de datos y programación orientada a objetos.  Constantemente busco aprender nuevas tecnologías y mejorar mis habilidades para convertirme en un desarrollador de software exitoso. </p>
+    <a class="btn btn-primary btn-lg rounded-0 my-3" href="{% static 'portfolio/cv.pdf' %}">Download my CV</a>
+  </div>
+</header>
+
+<div class="row my-4"> 
+
+  <div class="col-md-12 text-center mb-4">
+    <h3>My Projects</h3>
+    <p> Estos son mis proyectos: </p>
+  </div>
+
+  {% for project in projects %}
+  <div class="col-md-6 col-lg-4 mb-4"> 
+    <div class="card"> 
+      <img src="{{project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+      <div class="card-body">
+        <h5 class="card-title text-dark">{{ project.title }}</h5> 
+        <p class="card-text text-dark">{{ project.description }}</p> 
+        {% if project.url %}
+        <a href="{{project.url}}" class="btn btn-primary" target="__blank" rel="noreferrer"> Ver </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="row my-4">
+  <div class="col-md-12 text-center mb-4">
+    <h3>Experiencia</h3>
+    <p>Estos son algunos de los cursos que he realizado:</p>
+  </div>
+
+  {% for experiencia in experiencias %}
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card h-100 border"> 
+      <div class="card-body d-flex flex-column text-dark">  
+        <h5 class="card-title">{{ experiencia.institucion_del_curso }}</h5>
+        <p class="card-text">{{ experiencia.descripcion_curso }}</p>
+        <p class="card-text">Fecha: {{ experiencia.fecha_curso }}</p>
+        <p class="card-text">Duración: {{ experiencia.numero_horas }} horas</p>
+        <div class="mt-auto"> </div> 
+      </div> 
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
